@@ -1,0 +1,52 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper-content {
+  display: flex;
+  justify-content: space-between;
+  width: 700px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+input:first-child {
+  margin: 0 0 5px;
+}
+
+.buttons-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}
+
+button {
+  width: 70px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid grey;
+}
+
+th {
+  min-width: 100px;
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+  background-color: mistyrose;
+}
+th:first-child {
+  min-width: 20px;
+}
