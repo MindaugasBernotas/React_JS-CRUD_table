@@ -10,6 +10,10 @@ const initialValues = {
 function App() {
   const [userData, setUserData] = useState(initialValues);
   const [users, setUsers] = useState([]);
+
+  const isFilledFields =
+    userData.userName && userData.userSurname && userData.userSalary;
+
   const handleSubmitUser = (e) => {
     e.preventDefault();
     setUsers((prevState) => [...prevState, userData]);
@@ -26,13 +30,20 @@ function App() {
             <th>User Surname</th>
             <th>User Salary</th>
             <th>Actions</th>
-            <th>Actions</th>
             <tbody>
-              {users.map((user) => (
-                <div>
-                  <div></div>
-                  <div></div>
-                </div>
+              {users.map((user, index) => (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>{user.Name}</td>
+                  <td>{user.userSurname}</td>
+                  <td>{user.userSalary}</td>
+                  <td>
+                    <div>
+                      <button className="edit-action">edit</button>
+                      <button className="remove-action">remove</button>
+                    </div>
+                  </td>
+                </tr>
               ))}
             </tbody>
           </table>

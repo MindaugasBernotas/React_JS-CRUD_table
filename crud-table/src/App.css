@@ -50,3 +50,8 @@ th {
 th:first-child {
   min-width: 20px;
 }
+
+td {
+  border: 1px solid grey;
+  padding: 5px;
+}
