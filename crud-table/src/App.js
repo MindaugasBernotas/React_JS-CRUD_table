@@ -10,14 +10,39 @@ const initialValues = {
 function App() {
   const [userData, setUserData] = useState(initialValues);
   const [users, setUsers] = useState([]);
+  const [editableUserData, setEditableUserData] = useState({
+    isEdit: false,
+    userIndex: null,
+  });
+  const handleRemoveClick = (index) => {
+    setUsers(users.filter((user, userIndex) => userIndex !== index));
+  };
 
   const isFilledFields =
     userData.userName && userData.userSurname && userData.userSalary;
 
   const handleSubmitUser = (e) => {
     e.preventDefault();
-    setUsers((prevState) => [...prevState, userData]);
-    setUserData(initialValues);
+
+    if (isFilledFields) {
+      if (editableUserData.isEdit) {
+        const editableUserData = users;
+        editedData.splice(editableUserData.userIndex, 1, userData);
+        setUsers(editedData);
+      } else {
+        setUsers((prevState) => [...prevState, userData]);
+      }
+      setUsers((prevState) => [...prevState, userData]);
+      setUserData(initialValues);
+    }
+  };
+  const handleCleanClick = () => setUserData(initialValues);
+  const handleEditClick = (data, index) => {
+    setUserData(data);
+    setEditableUserData({
+      isEdit: true,
+      userIndex: index,
+    });
   };
   console.log("users", users);
   return (
@@ -39,8 +64,18 @@ function App() {
                   <td>{user.userSalary}</td>
                   <td>
                     <div>
-                      <button className="edit-action">edit</button>
-                      <button className="remove-action">remove</button>
+                      <button
+                        className="edit-action"
+                        onClick={() => handleEditClick(user, index)}
+                      >
+                        edit
+                      </button>
+                      <button
+                        className="remove-action"
+                        onClick={() => handleRemoveClick(index)}
+                      >
+                        remove
+                      </button>
                     </div>
                   </td>
                 </tr>
@@ -49,7 +84,7 @@ function App() {
           </table>
         </div>
         <div>
-          <form onSubmit={handleSubmitUser}>
+          <form onSubmit={handleSubmitUser} onReset={handleCleanClick}>
             <input
               placeholder="Write your name"
               onChange={(e) =>
@@ -82,7 +117,9 @@ function App() {
             />
             <div className="buttons-wrapper">
               <button type="reset">Clean</button>
-              <button type="submit">Add</button>
+              <button disabled={!isFilledFields} type="submit">
+                Add
+              </button>
             </div>
           </form>
         </div>
