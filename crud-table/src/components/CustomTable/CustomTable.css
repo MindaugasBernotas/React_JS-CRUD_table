@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid grey;
+}
+
+th {
+  min-width: 100px;
+  border: 1px solid grey;
+  text-align: left;
+  padding: 5px;
+  background-color: #435d7d;
+  color: white;
+}
+
+th:first-child {
+  min-width: 20px;
+}
+
+td {
+  border: 1px solid grey;
+  padding: 5px;
+}
